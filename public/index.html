@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"></script>
+
+  <script type="text/javascript" src="lib/heatmap.min.js"></script>
+  <script src="lib/leaflet-heatmap.js"></script>
+
+
+
+<div id="mapid" style="height: 500px;"></div>
+  <body ng-controller="mainCtrl">
+
+    <div>
+        <p>Name : <input type="text" ng-model="name"></p>
+        <h1>Hello {{name}}</h1>
+    </div>
+
+    <!--div id="mapid" style="height: 500px;"></div-->
+
+  </body>
+  <script src="js/controllers/main.js"></script>
+</html>
