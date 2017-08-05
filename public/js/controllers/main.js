@@ -1,16 +1,6 @@
 var app = angular.module('myApp', []);
 
 app.controller('mainCtrl', function($scope, $http) {
-    console.log("Hello world from controller");
-
-    var testData = {
-      max: 12,
-      data: [
-        {lat: 24.6408, lng:46.7728, count: 3},
-        {lat: 41.75, lng:12.55, count: 1},
-        {lat: 52.75, lng:21.55, count: 5}
-      ]
-    };
 
     var baseLayer = L.tileLayer(
       'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
@@ -47,17 +37,13 @@ app.controller('mainCtrl', function($scope, $http) {
       layers: [baseLayer, heatmapLayer]
     });
 
-    heatmapLayer.setData(testData);
-
-
-
-    $scope.refresh = function() {
-      $http.get("/data").then(function(response) {
-        console.log("I got data from server");
+    $scope.loadMapData = function() {
+      $http.get("/heatmap/data").then(function(response) {
         $scope.data = response.data;
+        heatmapLayer.setData(testData);
       });
     };
 
-    $scope.refresh();
+    $scope.loadMapData();
 
 });
