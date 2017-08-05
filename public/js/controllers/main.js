@@ -40,7 +40,12 @@ app.controller('mainCtrl', function($scope, $http) {
     $scope.loadMapData = function() {
       $http.get("/heatmap/data").then(function(response) {
         $scope.data = response.data;
-        heatmapLayer.setData(testData);
+        var dataToDisplay =  {
+            max: 12,
+            data: $scope.data
+        };
+
+        heatmapLayer.setData(dataToDisplay);
       });
     };
 
