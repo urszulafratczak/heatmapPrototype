@@ -3,14 +3,17 @@
 /// <reference path="./../../../typings/angularjs/angular-resource.d.ts" />
 /// <reference path="./../../../typings/heatmapjs/heatmap.d.ts" />
 /// <reference path="./../../../typings/heatmapjs/leaflet.d.ts" />
-//exports.__esModule = true;
-//require("./../app"); //import module from app.ts
-var mainCtrl = (function () {
-    function mainCtrl($scope, $http) {
+var mapController = (function () {
+    function mapController($scope, $http) {
+        /*var checkExist = setInterval(function() {
+           if ($('#mapid').length) {
+              console.log("Exists!");
+              clearInterval(checkExist);
+           }
+        }, 100); // check every 100ms*/
         var _this = this;
         this.$scope = $scope;
         this.$http = $http;
-        this.$inject = ['$scope', '$http'];
         var baseLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
             maxZoom: 18
@@ -49,12 +52,20 @@ var mainCtrl = (function () {
             heatmapLayer.setData(dataToDisplay);
         });
     }
-    mainCtrl.prototype.loadMapData = function () {
+    mapController.prototype.loadMapData = function () {
         return this.$http.get("/heatmap/data").then(function (response) {
             console.log(response.data);
             return response.data;
         });
     };
-    return mainCtrl;
+    mapController.$inject = ['$scope', '$http'];
+    return mapController;
 }());
-app.controller('mainCtrl', mainCtrl);
+function mapDirective() {
+    return {
+        restrict: "E",
+        templateUrl: "./js/directives/map-directive.html",
+        controller: mapController
+    };
+}
+app.directive("mapDirective", [mapDirective]);
