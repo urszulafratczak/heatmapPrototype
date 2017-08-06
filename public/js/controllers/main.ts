@@ -3,7 +3,7 @@
 /// <reference path="./../../../typings/heatmapjs/heatmap.d.ts" />
 /// <reference path="./../../../typings/heatmapjs/leaflet.d.ts" />
 
-var app = angular.module('myApp', []);
+import "./../app";  //import module from app.ts
 
 interface mainCtrlScope {
     loadMapData(): void;

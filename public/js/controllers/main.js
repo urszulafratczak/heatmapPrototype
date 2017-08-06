@@ -1,8 +1,10 @@
+"use strict";
 /// <reference path="./../../../typings/angularjs/angular.d.ts" />
 /// <reference path="./../../../typings/angularjs/angular-resource.d.ts" />
 /// <reference path="./../../../typings/heatmapjs/heatmap.d.ts" />
 /// <reference path="./../../../typings/heatmapjs/leaflet.d.ts" />
-var app = angular.module('myApp', []);
+//exports.__esModule = true;
+//require("./../app"); //import module from app.ts
 var mainCtrl = (function () {
     function mainCtrl($scope, $http) {
         var _this = this;
